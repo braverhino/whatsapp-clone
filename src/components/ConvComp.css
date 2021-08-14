@@ -1,0 +1,13 @@
+.message_btn{
+    border: none;
+    outline: none;
+    display: none;
+    color: white;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    background: rgba(0, 0, 0, .5);
+    padding: 1px 5px;
+    border-radius: 50%;
+}

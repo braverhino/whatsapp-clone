@@ -87,7 +87,7 @@ const GoBackBtn = styled.button`
   width: 30px;
   height: 25px;
   padding: 0;
-  margin: 0px;
+  margin: 0;
   border: none;
   cursor: pointer;
 `
@@ -96,13 +96,7 @@ const ContactComponent = (props) => {
     {userData, setNewContactsShow, chats, setChat, user, setUpdate}
       = props
   let alreadyExist = false
-  let chatID = null
-  let createdBy = null
-  let creatorData = {
-    createdBy: null,
-    creatorName: null,
-    creatorPhotoUrl: null
-  }
+  let chatData = {}
   const order = {
     uid: userData.uid,
     createdBy: user.uid,
@@ -117,12 +111,9 @@ const ContactComponent = (props) => {
   chats.map((chat) => {
     if ((userData.uid === chat.uid && user.uid === chat.createdBy) || (user.uid === chat.uid && userData.uid === chat.createdBy)){
       alreadyExist = true;
-      chatID = chat.id
-      creatorData.createdBy = chat.createdBy;
-      creatorData.creatorName = chat.creatorName;
-      creatorData.creatorPhotoUrl = chat.creatorPhotoUrl;
+      chatData = {...chat}
       // eslint-disable-next-line no-sequences
-      return alreadyExist, chatID, creatorData;
+      return alreadyExist, chatData;
     }
   })
 
@@ -135,7 +126,7 @@ const ContactComponent = (props) => {
         await setNewContactsShow(false)
         setUpdate(true)
       }else{
-        await setChat({...userData, id: chatID, ...creatorData})
+        await setChat({...chatData})
         await setNewContactsShow(false)
         setUpdate(true)
       }

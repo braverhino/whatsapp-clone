@@ -49,22 +49,7 @@ function App() {
     })
     getChats(setChats);
   }, [])
-  // const [messages, setMessages] = useState([])
-  //
-  // if (selectedChat){
-  //   let tempId = selectedChat.id
-  //     console.log('tempId', tempId)
-  //     console.log('selected id', selectedChat.id)
-  //   if (selectedChat.id !== tempId){
-  //     tempId = selectedChat.id
-  //   }
-  // }
-  // if (selectedChat) {
-  //   getMessagesByChatId(selectedChat.id).then((list) => {
-  //     setMessages(list)
-  //     console.log('...')
-  //   })
-  // }
+
   if(loading) {
     return (
       <>

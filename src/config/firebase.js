@@ -39,11 +39,12 @@ export function createMessage(chat, order) {
   const ref = db.collection("messages");
   const id = ref.doc().id + chat.id;
   const orderRef = ref.doc(id);
-  return orderRef.set({
+  orderRef.set({
     ...order,
     id,
     createdAt: firebase.firestore.FieldValue.serverTimestamp(),
   });
+  return id;
 }
 export function getMessagesByChatId(chatId) {
   return db.collection('messages')
@@ -60,6 +61,14 @@ export function deleteAllMessagesByChatId(chatId) {
     querySnapshot.forEach((doc) => {
       doc.ref.delete();
     })
+  })
+}
+
+export function editMessage(order, messageId) {
+  const orderRef = db.collection("messages").doc(messageId)
+  orderRef.update({
+    ...order,
+    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
   })
 }
 export function deleteMessage(messageId) {

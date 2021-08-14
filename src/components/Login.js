@@ -31,7 +31,6 @@ const signInWithGoogle = async () => {
     photoUrl: auth.currentUser.photoURL,
     createdAt: firebase.firestore.FieldValue.serverTimestamp()
   })
-  console.log(auth.currentUser)
 }
 
 
